@@ -23,18 +23,18 @@ Table of Contents
       * [The singleton pattern](#the-singleton-pattern)
          * [Why using a singleton](#why-using-a-singleton)
          * [How to implement a singleton](#how-to-implement-a-singleton)
-   * [The Logger class](#the-logger-class)
-      * [The Logger class declaration](#the-logger-class-declaration)
+   * [The SysInfo class](#the-sysinfo-class)
+      * [The SysInfo class declaration](#the-sysinfo-class-declaration)
          * [Constructor and assignment](#constructor-and-assignment)
          * [Copy constructor and assignment](#copy-constructor-and-assignment)
          * [Move constructor and assignment](#move-constructor-and-assignment)
       * [Singleton functionality](#singleton-functionality)
-      * [Logger functionality](#logger-functionality)
+      * [SysInfo functionality](#sysinfo-functionality)
          * [Log level](#log-level)
          * [Print method](#print-method)
          * [Output setting](#output-setting)
          * [Output protection](#output-protection)
-         * [Logger class final result](#logger-class-final-result)
+         * [SysInfo class final result](#sysinfo-class-final-result)
       * [Test application](#test-application)
          * [Global parameters](#global-parameters)
          * [Test routine](#test-routine)
@@ -54,43 +54,17 @@ Table of Contents
 
 # Motivations
 
-First of all, *pardon my French*, as a French native speaker, with a fairly solid background in English, some of my sentences may seem flawed. 
+I want a C++ Class that I can use on the desktop to detect hardware info such as the amount of available RAM, installed graphics card, 
+CPU, instruction set support on the CPU and other such things that a desktop application may need to know. 
 
-For a few years now, I've been thinking about maintaining a blog on programming.
-I am now a reasonably experienced engineer.
-I have worked on stimulating projects at Thales and Airbus in France, and I want to share some visions I have on my field.
-As I am finishing my Ph.D. thesis, I have started my job search process.
-Latterly, I participated in a test, during which I had a few tens of minutes to answer questions about implementation in modern C++.
-From my point of view, I had no difficulty answering the questions, and to be honest, I even had much fun.
-Nevertheless, once the test was over, I took my books from C++ to check my answers, and I noticed that they were rather old on their recommendation for design pattern implementation.
+I want it to be pure C++ so that I can use it anywhere and not have to rely on a framework. 
 
-I, therefore, take this opportunity to express my point of view on modern design in C++.
-
-My contribution on this blog is particularly minimal, and I'm sure that some books I don't have yet offer even better implementation methods than mine.
-Furthermore, some C++ blogs are way more interesting than mine. I prepared a small related work section in this article.
-Anyway, I think it's time for me to stop hiding behind the excuse that someone somewhere must have already done better not to publish.
-If by any chance you are interested in my vision, and you identify gaps in my proposals, I would be particularly glad to discuss this in the comments.
-
+I want to build it in CMAKE so that I can compile it on Mac and Windows programmatically from the command line and not be beholden 
+to an IDE such as Visual Studio on Windows or XCode on MacOS
 ---
 
 # Context
 
-One of the questions in my test was, from memory:
-> Implement a Logger, based on the singleton.
->
-> The Logger should have a print method taking as input a log level (INFO, WARN, ERROR), and a message.
->
-> The use of C++11 and a thread-safe implementation will be appreciated.
-
-This question was particularly inspiring to me.
-I implemented a distributed simulation framework in C++11, in which I made extensive use of design patterns.
-
-By the greatest coincidence, I had made in this framework a similar Logger class to trace the execution of simulation components.
-The significant differences being that :
-* Using a simulation framework distributed between my components, I did not need to make sure my implementation was thread-safe.
-* The singleton part was at the simulation components level.
-
-I rewrote a singleton in much the same way as I did in my framework, making sure to make it thread-safe.
 
 ---
 
@@ -104,13 +78,13 @@ All these resources are much more professional and educational than my work, and
 
 ## Blogs and websites
 
+* I copied the much of the structure and design of this singleton from [here](https://github.com/hnrck/singleton_example)
 * [C++ Programming: Code patterns design](https://en.wikibooks.org/wiki/C%2B%2B_Programming/Code/Design_Patterns)
 * [Fluent\{C\+\+\}](https://www.fluentcpp.com/)
 * [Andrzej's C++ blog](https://akrzemi1.wordpress.com/)
 * [The view from aristeia](http://scottmeyers.blogspot.com/)
 * [ISO C++ blog](https://isocpp.org/blog)
 * [C++ Core guidelines](https://github.com/isocpp/CppCoreGuidelines)
-* ... And much more, just google 
 
 &nbsp;
 
@@ -156,12 +130,6 @@ The singleton is also very often used in the implementation of other design patt
 
 Besides, the singleton makes it possible to maintain a global state without going through a global variable and saves time and allocation space.
 
-Unfortunately, the singleton is also very often misused, and many articles can be found on the Internet presenting arguments against the singleton.
-
-It is not for me to say if the singleton is a good or bad design pattern.
-I focus here on my vision of its implementation.
-
-
 ### How to implement a singleton
 
 The object should only exist in one instance, so the constructor of its class is inaccessible, and an interface is provided.
@@ -176,27 +144,27 @@ The `get_instance` class method allows to build this instance on the first call,
 
 ---
 
-# The Logger class
+# The SysInfo class
 
 Let's get to the crux of the matter, the implementation of an example of a singleton.
 
-We will first focus on the elements essential to any class, constructors and destructors, then deal with the addition of the instance and the get_instance method, and finally add the functionalities of the Logger.
+We will first focus on the elements essential to any class, constructors and destructors, then deal with the addition of the instance and the get_instance method, and finally add the functionalities of the SysInfo.
 
-![Logger class diagram](https://hnrck.io/static/assets/img/blog/cpp/singleton_example/logger.png "Logger class diagram")
+![SysInfo class diagram](https://hnrck.io/static/assets/img/blog/cpp/singleton_example/sysinfo.png "SysInfo class diagram")
 
-The Logger should be a singleton; its class diagram strongly resembles the singleton ones, and the pattern of the singleton can be figured behind it.
+The SysInfo should be a singleton; its class diagram strongly resembles the singleton ones, and the pattern of the singleton can be figured behind it.
 We add a print method as requested, which takes a log level and a message and displays them.
 We also add the possibility to configure the output of this print via a private class attribute, `output_`, which can be modified by a class method, as well as a mutex to protect the critical section that is `output_` access.
 Let's now look at its implementation.
 
 &nbsp;
 
-## The Logger class declaration
+## The SysInfo class declaration
 
 The first step in creating a class in C++, its declaration.
 
 ```cpp
-class Logger final {
+class SysInfo final {
 };
 ```
 
@@ -218,13 +186,13 @@ Here we have subtleties that make us want the explicit declarations: we want to 
 
 ```cpp
  private: // Private default constructor.
-  Logger() = default;
+  SysInfo() = default;
 
  public:
 
-  // Default logger destructor. No need for virtual destructor as the logger
+  // Default sysinfo destructor. No need for virtual destructor as the sysinfo
   // class cannot be inherited.
-  ~Logger() = default;
+  ~SysInfo() = default;
 ```
 
 C++11 introduces new mechanisms for declaring constructors and destructors, the [`= default` and `= delete` specifiers](http://www.stroustrup.com/C++11FAQ.html#default).
@@ -251,12 +219,12 @@ By default, the compiler will generate [copy constructor](https://en.cppreferenc
 ```cpp
  public:
   // Deleted copy constructor.
-  // Only the get_instance class method is allowed to give a logger.
-  Logger(const Logger &) = delete;
+  // Only the get_instance class method is allowed to give a sysinfo.
+  SysInfo(const SysInfo &) = delete;
 
   // Deleted copy assignment.
-  // Only the get_instance class method is allowed to give a logger.
-  void operator=(const Logger &) = delete;
+  // Only the get_instance class method is allowed to give a sysinfo.
+  void operator=(const SysInfo &) = delete;
 ```
 
 In an earlier version of C++, one would have put these constructors and assignments in the `private` part of the class, as we did to the constructor, but C++11 allows a cleaner method to prevent the use of copy.
@@ -275,10 +243,10 @@ Once an instance has been provided to a client, the client can do whatever he wa
 ```cpp
  public:
   // Default move constructor.
-  Logger(Logger &&) noexcept = default;
+  SysInfo(SysInfo &&) noexcept = default;
 
   // Default move assignment.
-  Logger &operator=(Logger &&) noexcept = default;
+  SysInfo &operator=(SysInfo &&) noexcept = default;
 ```
 
 Just as we did for the destructor, these are `public` and `default`.
@@ -300,22 +268,22 @@ For the interface, we implement a class method that will initialize the instance
 
 ```cpp
  public:
-  // Initialize the Logger singleton once, and return it each time this class
+  // Initialize the SysInfo singleton once, and return it each time this class
   // method is called.
-  static Logger &get_instance();
+  static SysInfo &get_instance();
 ```
 
-[`static` is the keyword](https://en.cppreference.com/w/cpp/language/static) used in C++ to declare a class method, and the return type is `Logger &`, a reference to the instance.
+[`static` is the keyword](https://en.cppreference.com/w/cpp/language/static) used in C++ to declare a class method, and the return type is `SysInfo &`, a reference to the instance.
 
 At the level of the instance implementation, C++ allows to hide it apart from its attributes.
 The instance can be linked to the class method `get_instance`:
 
 ```cpp
-Logger &Logger::get_instance() {
-  // The logger variable is initialized once with a move assignment of a logger
+SysInfo &SysInfo::get_instance() {
+  // The sysinfo variable is initialized once with a move assignment of a sysinfo
   // object build with the private constructor.
-  static auto &&logger = Logger();
-  return (logger);
+  static auto &&sysinfo = SysInfo();
+  return (sysinfo);
 }
 ```
 
@@ -328,11 +296,11 @@ The [`&&` token](https://en.cppreference.com/w/cpp/language/reference) is used t
 An rvalue reference behaves like an lvalue reference, but can be bind to a temporary rvalue.
 The initialized object that would have been a temporary object copied can now be moved in our variable.
 
-`Logger()` is the Logger class private constructor, creating the logger object.
+`SysInfo()` is the SysInfo class private constructor, creating the sysinfo object.
 
-`static auto &&logger = Logger();` means that the first time the declaration is executed, a logger object will be created by the private constructor, and moved into the logger variable, which is deducted to be a logger object.
+`static auto &&sysinfo = SysInfo();` means that the first time the declaration is executed, a sysinfo object will be created by the private constructor, and moved into the sysinfo variable, which is deducted to be a sysinfo object.
 
-From the compiler's point of view `static auto &&logger = Logger();` will be translated into `static Logger &&logger = Logger();`.
+From the compiler's point of view `static auto &&sysinfo = SysInfo();` will be translated into `static SysInfo &&sysinfo = SysInfo();`.
 I remain satisfied with the disappearance of the bureaucratic aspect of rewriting the class name several times to declare it, then initialize it with its constructor.
 
 __Note:__
@@ -340,7 +308,7 @@ __Note:__
 It would also have been possible to call the private constructor directly:
 
 ```cpp
-  static Logger logger;
+  static SysInfo sysinfo;
 ```
 
 From my point of view, this is a bad practice.
@@ -358,7 +326,7 @@ I recommend you this [great article](https://herbsutter.com/2013/08/12/gotw-94-s
 
 &nbsp;
 
-## Logger functionality
+## SysInfo functionality
 
 ### Log level
 
@@ -366,7 +334,7 @@ C++ inherits from C a straightforward mechanism for a set of constants declarati
 
 ```cpp
  public:
-  // The different logger levels.
+  // The different sysinfo levels.
   enum level : unsigned char {
     INFO,
     WARN,
@@ -384,13 +352,13 @@ There's nothing particular here.
 
 ```cpp
  public:
-  // Print a message with a certain logger level on the output.
+  // Print a message with a certain sysinfo level on the output.
   void print(enum level level, const std::string &message);
 ```
 
 This method is implemented as follow:
 ```cpp
-void Logger::print(Logger::level level, const std::string &message) {
+void SysInfo::print(SysInfo::level level, const std::string &message) {
   // Initializing a string stream.
   auto ss = std::stringstream();
 
@@ -430,19 +398,19 @@ I declared the `p_output` pointer on [std::ostream class](https://en.cppreferenc
 Initialized to `nullptr` in the implementation:
 ```cpp
 // Initialization of the display pointer.
-std::ostream *Logger::p_output_ = nullptr;
+std::ostream *SysInfo::p_output_ = nullptr;
 ```
 
 And add a public class method to change the output:
 ```cpp
  public:
-  // A function that allows the setting of the logger output.
+  // A function that allows the setting of the sysinfo output.
   // Nothing by default.
   static void set_output(std::ostream *p_output = nullptr);
 ```
 
 ```cpp
-void Logger::set_output(std::ostream *p_output) {
+void SysInfo::set_output(std::ostream *p_output) {
   p_output_ = p_output;
 }
 ```
@@ -465,13 +433,13 @@ Initialized in the implementation:
 
 ```cpp
 // Initialization of the display protection mutex.
-std::mutex Logger::output_mutex_;
+std::mutex SysInfo::output_mutex_;
 ```
 
 Nevertheless, C+++11 includes thread library support, with more specific blocking mechanisms, in particular, the [`std::lock_guard` class](https://en.cppreference.com/w/cpp/thread/lock_guard), which locks a mutex until the end of the scope:
 
 ```cpp
-void Logger::set_output(std::ostream *p_output) {
+void SysInfo::set_output(std::ostream *p_output) {
   auto &&lock __attribute__((unused)) =
       std::lock_guard<std::mutex>(output_mutex_);
   p_output_ = p_output;
@@ -479,7 +447,7 @@ void Logger::set_output(std::ostream *p_output) {
 ```
 
 ```cpp
-void Logger::print(Logger::level level, const std::string &message) {
+void SysInfo::print(SysInfo::level level, const std::string &message) {
   // Initializing a string stream.
   auto ss = std::stringstream();
 
@@ -507,15 +475,15 @@ void Logger::print(Logger::level level, const std::string &message) {
 }
 ```
 
-### Logger class final result
+### SysInfo class final result
 
-You can find on GitHub the final result of the Logger class [header](https://github.com/hnrck/singleton_example/blob/master/include/Logger.h) and [implementation](https://github.com/hnrck/singleton_example/blob/master/srcs/Logger.cpp).
+You can find on GitHub the final result of the SysInfo class [header](https://github.com/hnrck/singleton_example/blob/master/include/SysInfo.h) and [implementation](https://github.com/hnrck/singleton_example/blob/master/srcs/SysInfo.cpp).
 
 &nbsp;
 
 ## Test application 
 
-A small program repeatedly calling the print method of the logger instance concurrently is built to test our singleton Logger.
+A small program repeatedly calling the print method of the sysinfo instance concurrently is built to test our singleton SysInfo.
 
 ### Global parameters
 
@@ -529,18 +497,18 @@ We will set a maximum number of threads, no need to go beyond 1000 threads.
 
 ### Test routine
 
-Then, a small routine that retrieves the instance of the Logger, generates a level and a message, waits for 10 milliseconds, and then calls the print method is implemented:
+Then, a small routine that retrieves the instance of the SysInfo, generates a level and a message, waits for 10 milliseconds, and then calls the print method is implemented:
 
 ```cpp
 // A simple test routine.
 static void test_routine(int i) {
-  // Getting the logger instance.
-  auto &logger = Logger::get_instance();
+  // Getting the sysinfo instance.
+  auto &sysinfo = SysInfo::get_instance();
 
   // Generating a level from i, with a round-robin strategy.
   const auto level =
-      static_cast<Logger::level>(Logger::INFO
-          + i % (Logger::ERROR + 1 - Logger::INFO));
+      static_cast<SysInfo::level>(SysInfo::INFO
+          + i % (SysInfo::ERROR + 1 - SysInfo::INFO));
 
   // Generating a message from i.
   const auto message =
@@ -549,8 +517,8 @@ static void test_routine(int i) {
   // Waiting for 10ms.
   std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
-  // Logging the message with a the round-robin logger level.
-  logger.print(level, message);
+  // Logging the message with a the round-robin sysinfo level.
+  sysinfo.print(level, message);
 }
 ```
 
@@ -574,19 +542,19 @@ int main(int argc, char const *argv[]) {
   auto exit_code = int(EXIT_SUCCESS);
 ```
 
-Then we retrieve the instance of our Logger, and set the output to the standard error output:
+Then we retrieve the instance of our SysInfo, and set the output to the standard error output:
 
 ```cpp
-  // Using our logger for error logging.
-  auto &logger = Logger::get_instance();
+  // Using our sysinfo for error logging.
+  auto &sysinfo = SysInfo::get_instance();
 
-  // Setting the logger output to std::cerr, so the log can be save from
+  // Setting the sysinfo output to std::cerr, so the log can be save from
   // command line using " 2> <log_file>"
-  Logger::set_output(&std::cerr);
+  SysInfo::set_output(&std::cerr);
 ```
 
 We can now parse the user's entry to retrieve the number of threads to launch.
-We are preparing to potentially receive an error from this parsing with a `try {...} catch` block, in which case we can use our logger instance to display an error message.
+We are preparing to potentially receive an error from this parsing with a `try {...} catch` block, in which case we can use our sysinfo instance to display an error message.
 
 ```cpp
   auto arg = std::string();
@@ -653,17 +621,17 @@ The GitHub repository is structured as following:
 │   └── main.cpp
 ├── CMakeLists.txt
 ├── include
-│   └── Logger.h
+│   └── SysInfo.h
 ├── LICENSE
 └── srcs
-    └── Logger.cpp
+    └── SysInfo.cpp
 ```
 
-* app - containing the application [`main.cpp`](https://github.com/hnrck/singleton_example/blob/master/app/main.cpp), using the Logger class.
+* app - containing the application [`main.cpp`](https://github.com/hnrck/singleton_example/blob/master/app/main.cpp), using the SysInfo class.
 * [`CMakeLists.txt`](https://github.com/hnrck/singleton_example/blob/master/CMakeLists.txt) - allowing to build the project quickly.
-* include - containing the [Logger header](https://github.com/hnrck/singleton_example/blob/master/include/Logger.h).
+* include - containing the [SysInfo header](https://github.com/hnrck/singleton_example/blob/master/include/SysInfo.h).
 * [`LICENSE`](https://github.com/hnrck/singleton_example/blob/master/LICENSE) - the license of the project.
-* srcs - containing the [Logger implementation](https://github.com/hnrck/singleton_example/blob/master/srcs/Logger.cpp).
+* srcs - containing the [SysInfo implementation](https://github.com/hnrck/singleton_example/blob/master/srcs/SysInfo.cpp).
 
 To test the project, the easiest way is to clone the github repository:
 ```
@@ -682,7 +650,7 @@ cmake ..
 cmake --build . 
 ```
 
-These commands build the logger library `liblogger.so.1.0.0` in `singleton_example/build/usr/lib/` and an executable `main` in `singleton_example/build/usr/bin/`.
+These commands build the sysinfo library `libsysinfo.so.1.0.0` in `singleton_example/build/usr/lib/` and an executable `main` in `singleton_example/build/usr/bin/`.
 
 *Alternative*
 
@@ -727,9 +695,9 @@ usr/bin/main 10 2> log.txt
 returns on the terminal:
 
 ```
-Logger singleton example.
+SysInfo singleton example.
 Take a number of thread from first argument (from 0 to 1000), and execute concurrently simple routines.
-Setting the logger output to std::cerr, so the log can be extracted and saved in a file.
+Setting the sysinfo output to std::cerr, so the log can be extracted and saved in a file.
 Creating  and joining 10 threads.
 All the threads finished their routines.
 Done with success.
@@ -778,7 +746,7 @@ Nevertheless, modern C++ best practices allow an explicit and beautiful implemen
 
 First of all, the singleton I decided to illustrate in this article is often considered as bad practice.
 
-Then, the Logger class and main application I built are very simplistic examples. The Internet is full of examples of more interesting applications.
+Then, the SysInfo class and main application I built are very simplistic examples. The Internet is full of examples of more interesting applications.
 
 &nbsp;
 
