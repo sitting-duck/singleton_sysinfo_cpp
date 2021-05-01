@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/ashleytharp/projects/learnding/singleton_example/srcs/Logger.cpp
+Logger.h
+-
+sstream
+-
+
+include/Logger.h
+mutex
+-
+ostream
+-
+

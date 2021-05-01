@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/ashleytharp/projects/learnding/singleton_sysinfo/app/main.cpp
+iostream
+-
+thread
+-
+vector
+-
+SysInfo.h
+-
+
+include/SysInfo.h
+mutex
+-
+ostream
+-
+
