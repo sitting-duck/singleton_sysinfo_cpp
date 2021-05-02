@@ -24,7 +24,7 @@ int main(int argc, char const *argv[]) {
 
   std::cout << "SysInfo singleton example." << std::endl;
 
-
+  sysinfo.fetchMemory();
 
   std::cout << "Tests completed with "
             << (exit_code == (EXIT_SUCCESS) ? "success" : "failure") << "."

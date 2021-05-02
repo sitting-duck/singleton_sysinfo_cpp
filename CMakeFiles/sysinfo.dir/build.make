@@ -63,10 +63,10 @@ RM = /usr/local/Cellar/cmake/3.17.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ashleytharp/projects/learnding/singleton_sysinfo
+CMAKE_SOURCE_DIR = /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ashleytharp/projects/learnding/singleton_sysinfo
+CMAKE_BINARY_DIR = /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp
 
 # Include any dependencies generated for this target.
 include CMakeFiles/sysinfo.dir/depend.make
@@ -79,16 +79,16 @@ include CMakeFiles/sysinfo.dir/flags.make
 
 CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.o: CMakeFiles/sysinfo.dir/flags.make
 CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.o: srcs/SysInfo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.o -c /Users/ashleytharp/projects/learnding/singleton_sysinfo/srcs/SysInfo.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.o -c /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/srcs/SysInfo.cpp
 
 CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ashleytharp/projects/learnding/singleton_sysinfo/srcs/SysInfo.cpp > CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/srcs/SysInfo.cpp > CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.i
 
 CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ashleytharp/projects/learnding/singleton_sysinfo/srcs/SysInfo.cpp -o CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/srcs/SysInfo.cpp -o CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.s
 
 # Object files for target sysinfo
 sysinfo_OBJECTS = \
@@ -100,7 +100,7 @@ sysinfo_EXTERNAL_OBJECTS =
 usr/lib/libsysinfo.1.0.0.dylib: CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.o
 usr/lib/libsysinfo.1.0.0.dylib: CMakeFiles/sysinfo.dir/build.make
 usr/lib/libsysinfo.1.0.0.dylib: CMakeFiles/sysinfo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library usr/lib/libsysinfo.dylib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library usr/lib/libsysinfo.dylib"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sysinfo.dir/link.txt --verbose=$(VERBOSE)
 	$(CMAKE_COMMAND) -E cmake_symlink_library usr/lib/libsysinfo.1.0.0.dylib usr/lib/libsysinfo.1.dylib usr/lib/libsysinfo.dylib
 
@@ -120,6 +120,6 @@ CMakeFiles/sysinfo.dir/clean:
 .PHONY : CMakeFiles/sysinfo.dir/clean
 
 CMakeFiles/sysinfo.dir/depend:
-	cd /Users/ashleytharp/projects/learnding/singleton_sysinfo && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ashleytharp/projects/learnding/singleton_sysinfo /Users/ashleytharp/projects/learnding/singleton_sysinfo /Users/ashleytharp/projects/learnding/singleton_sysinfo /Users/ashleytharp/projects/learnding/singleton_sysinfo /Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles/sysinfo.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles/sysinfo.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/sysinfo.dir/depend
 

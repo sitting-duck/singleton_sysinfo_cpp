@@ -1,8 +1,7 @@
 #ifndef SINGLETON_SYSINFO_H
 #define SINGLETON_SYSINFO_H
 
-#include <mutex>
-#include <ostream>
+#include <utility>
 
 // The C++11 singleton-based system info class.
 class SysInfo final {
@@ -33,6 +32,8 @@ class SysInfo final {
 
   // Default move assignment.
   SysInfo &operator=(SysInfo &&) noexcept = default;
+
+  std::pair<double, double> fetchMemory();
 
 };
 

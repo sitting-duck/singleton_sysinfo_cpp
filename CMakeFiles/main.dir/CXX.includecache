@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/ashleytharp/projects/learnding/singleton_sysinfo/app/main.cpp
+/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/app/main.cpp
 iostream
 -
 thread
@@ -17,8 +17,6 @@ SysInfo.h
 -
 
 include/SysInfo.h
-mutex
--
-ostream
+utility
 -
 

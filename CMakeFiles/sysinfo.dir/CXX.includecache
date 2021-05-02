@@ -6,15 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/Users/ashleytharp/projects/learnding/singleton_sysinfo/srcs/SysInfo.cpp
+/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/srcs/SysInfo.cpp
 SysInfo.h
 -
 sstream
 -
+iostream
+-
+unistd.h
+-
+utility
+-
 
 include/SysInfo.h
-mutex
--
-ostream
+utility
 -
 

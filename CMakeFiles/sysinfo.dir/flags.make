@@ -6,5 +6,5 @@ CXX_FLAGS =  -Wall -Wpedantic -Wextra -Weffc++ -isysroot /Applications/Xcode.app
 
 CXX_DEFINES = -Dsysinfo_EXPORTS
 
-CXX_INCLUDES = -I/Users/ashleytharp/projects/learnding/singleton_sysinfo/include 
+CXX_INCLUDES = -I/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/include 
 

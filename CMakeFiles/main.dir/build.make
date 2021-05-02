@@ -63,10 +63,10 @@ RM = /usr/local/Cellar/cmake/3.17.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ashleytharp/projects/learnding/singleton_sysinfo
+CMAKE_SOURCE_DIR = /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ashleytharp/projects/learnding/singleton_sysinfo
+CMAKE_BINARY_DIR = /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -79,16 +79,16 @@ include CMakeFiles/main.dir/flags.make
 
 CMakeFiles/main.dir/app/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/app/main.cpp.o: app/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/app/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/app/main.cpp.o -c /Users/ashleytharp/projects/learnding/singleton_sysinfo/app/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/app/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/app/main.cpp.o -c /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/app/main.cpp
 
 CMakeFiles/main.dir/app/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/app/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ashleytharp/projects/learnding/singleton_sysinfo/app/main.cpp > CMakeFiles/main.dir/app/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/app/main.cpp > CMakeFiles/main.dir/app/main.cpp.i
 
 CMakeFiles/main.dir/app/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/app/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ashleytharp/projects/learnding/singleton_sysinfo/app/main.cpp -o CMakeFiles/main.dir/app/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/app/main.cpp -o CMakeFiles/main.dir/app/main.cpp.s
 
 # Object files for target main
 main_OBJECTS = \
@@ -101,7 +101,7 @@ usr/bin/main-1.0.0: CMakeFiles/main.dir/app/main.cpp.o
 usr/bin/main-1.0.0: CMakeFiles/main.dir/build.make
 usr/bin/main-1.0.0: usr/lib/libsysinfo.1.0.0.dylib
 usr/bin/main-1.0.0: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable usr/bin/main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable usr/bin/main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 	$(CMAKE_COMMAND) -E cmake_symlink_executable usr/bin/main-1.0.0 usr/bin/main
 
@@ -118,6 +118,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend:
-	cd /Users/ashleytharp/projects/learnding/singleton_sysinfo && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ashleytharp/projects/learnding/singleton_sysinfo /Users/ashleytharp/projects/learnding/singleton_sysinfo /Users/ashleytharp/projects/learnding/singleton_sysinfo /Users/ashleytharp/projects/learnding/singleton_sysinfo /Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.dir/depend
 

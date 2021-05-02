@@ -1,4 +1,4 @@
-/Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles/rebuild_cache.dir
-/Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles/edit_cache.dir
-/Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles/main.dir
-/Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles/sysinfo.dir
+/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles/rebuild_cache.dir
+/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles/edit_cache.dir
+/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles/main.dir
+/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles/sysinfo.dir

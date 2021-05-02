@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/ashleytharp/projects/learnding/singleton_sysinfo/app/main.cpp" "/Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles/main.dir/app/main.cpp.o"
+  "/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/app/main.cpp" "/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles/main.dir/app/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
@@ -15,7 +15,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/Users/ashleytharp/projects/learnding/singleton_sysinfo/CMakeFiles/sysinfo.dir/DependInfo.cmake"
+  "/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles/sysinfo.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
