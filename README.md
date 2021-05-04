@@ -371,112 +371,17 @@ void SysInfo::print(SysInfo::level level, const std::string &message) {
 }
 ```
 
-In the simulation framework I designed, I also added a possible output in a file, but I won't complicate the problem here much more.
-
-### Output setting
-
-I then wanted to add a class setting for the print output.
-
-I declared the `p_output` pointer on [std::ostream class](https://en.cppreference.com/w/cpp/io/basic_ostream) as private and static in the class:
-```cpp
- private:
-  static std::ostream *p_output_;
-```
-
-Initialized to `nullptr` in the implementation:
-```cpp
-// Initialization of the display pointer.
-std::ostream *SysInfo::p_output_ = nullptr;
-```
-
-And add a public class method to change the output:
-```cpp
- public:
-  // A function that allows the setting of the sysinfo output.
-  // Nothing by default.
-  static void set_output(std::ostream *p_output = nullptr);
-```
-
-```cpp
-void SysInfo::set_output(std::ostream *p_output) {
-  p_output_ = p_output;
-}
-```
-
-The `p_output_` pointer must be initialized outside the class.
-It's a C++ limitation that I regret.
-
-### Output protection
-
-In our code, we currently have a critical resource that is not protected: the output pointed to by `p_output_`.
-The simple answer to protecting a resource is to use the  [`std::mutex` class](https://en.cppreference.com/w/cpp/thread/mutex):
-
-```cpp
- private:
-  // A mutex to protect the display resource.
-  static std::mutex output_mutex_;
-```
-
-Initialized in the implementation:
-
-```cpp
-// Initialization of the display protection mutex.
-std::mutex SysInfo::output_mutex_;
-```
-
-Nevertheless, C+++11 includes thread library support, with more specific blocking mechanisms, in particular, the [`std::lock_guard` class](https://en.cppreference.com/w/cpp/thread/lock_guard), which locks a mutex until the end of the scope:
-
-```cpp
-void SysInfo::set_output(std::ostream *p_output) {
-  auto &&lock __attribute__((unused)) =
-      std::lock_guard<std::mutex>(output_mutex_);
-  p_output_ = p_output;
-}
-```
-
-```cpp
-void SysInfo::print(SysInfo::level level, const std::string &message) {
-  // Initializing a string stream.
-  auto ss = std::stringstream();
-
-  // Buffering the log level in the string stream.
-  switch (level) {
-    case (INFO):ss << "INFO";
-      break;
-    case (WARN):ss << "WARN";
-      break;
-    case (ERROR):ss << "ERROR";
-      break;
-  }
-  // Buffering the message in the string stream.
-  ss << ": " << message;
-
-  // Waiting for output access.
-  auto &&lock __attribute__((unused)) =
-      std::lock_guard<std::mutex>(output_mutex_);
-  if (p_output_ != nullptr) {
-    // If the output is set, then display the string stream.
-    (*p_output_) << ss.rdbuf() << std::endl;
-  }
-
-  // In a real application, log might also be saved in file.
-}
-```
 
 ### SysInfo class final result
-
-You can find on GitHub the final result of the SysInfo class [header](https://github.com/hnrck/singleton_example/blob/master/include/SysInfo.h) and [implementation](https://github.com/hnrck/singleton_example/blob/master/srcs/SysInfo.cpp).
 
 &nbsp;
 
 ## Test application 
 
-A small program repeatedly calling the print method of the sysinfo instance concurrently is built to test our singleton SysInfo.
+WIP 
 
 ### Global parameters
-
-First of all, the limits of our program are set through global parameters.
-We will set a maximum number of threads, no need to go beyond 1000 threads.
+wip
 
 ```cpp
 // An arbitrary maximum number of threads.
@@ -485,39 +390,10 @@ We will set a maximum number of threads, no need to go beyond 1000 threads.
 
 ### Test routine
 
-Then, a small routine that retrieves the instance of the SysInfo, generates a level and a message, waits for 10 milliseconds, and then calls the print method is implemented:
-
-```cpp
-// A simple test routine.
-static void test_routine(int i) {
-  // Getting the sysinfo instance.
-  auto &sysinfo = SysInfo::get_instance();
-
-  // Generating a level from i, with a round-robin strategy.
-  const auto level =
-      static_cast<SysInfo::level>(SysInfo::INFO
-          + i % (SysInfo::ERROR + 1 - SysInfo::INFO));
-
-  // Generating a message from i.
-  const auto message =
-      std::string("this is the message n° " + std::to_string(i) + ".");
-
-  // Waiting for 10ms.
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
-
-  // Logging the message with a the round-robin sysinfo level.
-  sysinfo.print(level, message);
-}
-```
 
 ### A small exception
 
-Finally, for cleanliness, we create an exception to return if the program user forgets to enter the number of threads.
 
-```cpp
-// An exception to use when the main class does not have enough argument.
-class missing_argument final : public std::exception {};
-```
 
 ### Main function
 
@@ -530,57 +406,8 @@ int main(int argc, char const *argv[]) {
   auto exit_code = int(EXIT_SUCCESS);
 ```
 
-Then we retrieve the instance of our SysInfo, and set the output to the standard error output:
+Then we retrieve the instance of our SysInfo,:
 
-```cpp
-  // Using our sysinfo for error logging.
-  auto &sysinfo = SysInfo::get_instance();
-
-  // Setting the sysinfo output to std::cerr, so the log can be save from
-  // command line using " 2> <log_file>"
-  SysInfo::set_output(&std::cerr);
-```
-
-We can now parse the user's entry to retrieve the number of threads to launch.
-We are preparing to potentially receive an error from this parsing with a `try {...} catch` block, in which case we can use our sysinfo instance to display an error message.
-
-```cpp
-  auto arg = std::string();
-
-  try {
-
-    // Checking the number of arguments.
-    if (argc < 2) {
-      throw (missing_argument());
-    }
-    arg.assign(argv[1]); // Pointer arithmetic is a bad practice, but I am lazy.
-
-    // Converting the number of thread from the first argument to an unsigned
-    // int.
-    auto nb_threads = std::stoul(arg);
-
-    if (nb_threads > (MAX_NB_THREADS)) {
-      // If the number of threads is above MAX_NB_THREADS, throw an error.
-      throw (std::out_of_range(""));
-    }
-```
-
-We can now launch `nb_threads` routine:
-
-```cpp
-    // Pre-allocation of the threads vector.
-    auto threads = std::vector<std::thread>(nb_threads);
-
-    // Initialization of the threads.
-    for (auto i = 0U; i < nb_threads; ++i) {
-      threads[i] = std::thread(test_routine, i);
-    }
-
-    // Joining the threads.
-    for (auto &thread : threads) {
-      thread.join();
-    }
-```
 
 Finally, if everything went well, we can leave the execution of the program.
 
@@ -591,8 +418,7 @@ Finally, if everything went well, we can leave the execution of the program.
 ```
 
 ### Test application final result
-
-The final result of the test application is available on [GitHub](https://github.com/hnrck/singleton_example/blob/master/app/main.cpp)
+wip
 
 ---
 
@@ -600,7 +426,6 @@ The final result of the test application is available on [GitHub](https://github
 
 ## GitHub repository
 
-The code source of the full example available is on [hnrck/singleton_example](https://github.com/hnrck/singleton_example).
 
 The GitHub repository is structured as following:
 ```
@@ -615,16 +440,6 @@ The GitHub repository is structured as following:
     └── SysInfo.cpp
 ```
 
-* app - containing the application [`main.cpp`](https://github.com/hnrck/singleton_example/blob/master/app/main.cpp), using the SysInfo class.
-* [`CMakeLists.txt`](https://github.com/hnrck/singleton_example/blob/master/CMakeLists.txt) - allowing to build the project quickly.
-* include - containing the [SysInfo header](https://github.com/hnrck/singleton_example/blob/master/include/SysInfo.h).
-* [`LICENSE`](https://github.com/hnrck/singleton_example/blob/master/LICENSE) - the license of the project.
-* srcs - containing the [SysInfo implementation](https://github.com/hnrck/singleton_example/blob/master/srcs/SysInfo.cpp).
-
-To test the project, the easiest way is to clone the github repository:
-```
-git clone https://github.com/hnrck/singleton_example.git
-```
 
 &nbsp;
 
