@@ -1,12 +1,7 @@
 # singleton_example
 
-Modern C++ singleton implementation through an example article [published](https://hnrck.io/cpp/2018/11/05/1-modern-cpp-singleton.html) on my blog.
 
 **[tl;dr]** Modern C++ best practices allows an explicit and beautiful implementation of the singleton design pattern.
-
----
-
-Code source of the full example available on [hnrck/singleton_example](https://github.com/hnrck/singleton_example).
 
 ---
 
@@ -61,10 +56,14 @@ I want it to be pure C++ so that I can use it anywhere and not have to rely on a
 
 I want to build it in CMAKE so that I can compile it on Mac and Windows programmatically from the command line and not be beholden 
 to an IDE such as Visual Studio on Windows or XCode on MacOS
+
+I want it to be a singleton class and use it as a sort of global utilities tool for making requests about the state of the machine. 
+
 ---
 
 # Context
-
+I mainly have worked in graphics applications on the desktop over the past 5 years, I would like a nice class, hardy utility library
+for accessing the computer hardware that is well designed and reusable.
 
 ---
 
@@ -96,7 +95,6 @@ All these resources are much more professional and educational than my work, and
 * [Effective Modern C++](https://www.oreilly.com/library/view/effective-modern-c/9781491908419/)
 * [Safe C++](https://www.oreilly.com/library/view/safe-c/9781449321338/)
 * [C++ Concurrency in Action](https://www.manning.com/books/c-plus-plus-concurrency-in-action)
-* ... And much more than I have not yet had the opportunity to read ...
 
 ---
 
@@ -146,16 +144,6 @@ The `get_instance` class method allows to build this instance on the first call,
 
 # The SysInfo class
 
-Let's get to the crux of the matter, the implementation of an example of a singleton.
-
-We will first focus on the elements essential to any class, constructors and destructors, then deal with the addition of the instance and the get_instance method, and finally add the functionalities of the SysInfo.
-
-![SysInfo class diagram](https://hnrck.io/static/assets/img/blog/cpp/singleton_example/sysinfo.png "SysInfo class diagram")
-
-The SysInfo should be a singleton; its class diagram strongly resembles the singleton ones, and the pattern of the singleton can be figured behind it.
-We add a print method as requested, which takes a log level and a message and displays them.
-We also add the possibility to configure the output of this print via a private class attribute, `output_`, which can be modified by a class method, as well as a mutex to protect the critical section that is `output_` access.
-Let's now look at its implementation.
 
 &nbsp;
 

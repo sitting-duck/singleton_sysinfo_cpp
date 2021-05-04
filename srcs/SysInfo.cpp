@@ -3,6 +3,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <utility>
+#include "MacSystemInfo.h"
 
 SysInfo &SysInfo::get_instance() {
   // The sysinfo variable is initialized once with a move assignment of a sysinfo
@@ -24,3 +25,7 @@ std::pair<double, double> SysInfo::fetchMemory() {
   return std::pair<double,double>(memory,used);
 }
 
+void SysInfo::loadSystemFeatures() {
+    os = operating_system::mac;
+    osVersion = mac_version();
+}

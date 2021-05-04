@@ -7,7 +7,11 @@
 class SysInfo final {
  private:
   // Private default constructor.
-  SysInfo() = default;
+  //SysInfo() = default;
+  SysInfo() { loadSystemFeatures(); }
+  enum operating_system {mac, windows};
+  operating_system os;
+  float osVersion;
 
  public:
 
@@ -34,6 +38,9 @@ class SysInfo final {
   SysInfo &operator=(SysInfo &&) noexcept = default;
 
   std::pair<double, double> fetchMemory();
+
+  void loadSystemFeatures();
+
 
 };
 
