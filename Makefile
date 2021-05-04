@@ -144,6 +144,19 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
+# Target rules for targets named macsysinfo
+
+# Build rule for target.
+macsysinfo: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 macsysinfo
+.PHONY : macsysinfo
+
+# fast build rule for target.
+macsysinfo/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/macsysinfo.dir/build.make CMakeFiles/macsysinfo.dir/build
+.PHONY : macsysinfo/fast
+
+#=============================================================================
 # Target rules for targets named sysinfo
 
 # Build rule for target.
@@ -183,6 +196,15 @@ app/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/app/main.cpp.s
 .PHONY : app/main.cpp.s
 
+srcs/MacSysInfo.o: srcs/MacSysInfo.mm.o
+
+.PHONY : srcs/MacSysInfo.o
+
+# target to build an object file
+srcs/MacSysInfo.mm.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/macsysinfo.dir/build.make CMakeFiles/macsysinfo.dir/srcs/MacSysInfo.mm.o
+.PHONY : srcs/MacSysInfo.mm.o
+
 srcs/SysInfo.o: srcs/SysInfo.cpp.o
 
 .PHONY : srcs/SysInfo.o
@@ -218,11 +240,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... macsysinfo"
 	@echo "... main"
 	@echo "... sysinfo"
 	@echo "... app/main.o"
 	@echo "... app/main.i"
 	@echo "... app/main.s"
+	@echo "... srcs/MacSysInfo.o"
 	@echo "... srcs/SysInfo.o"
 	@echo "... srcs/SysInfo.i"
 	@echo "... srcs/SysInfo.s"

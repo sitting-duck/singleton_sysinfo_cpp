@@ -26,8 +26,10 @@ int main(int argc, char const *argv[]) {
 
   std::pair<double, double> memory = sysinfo.fetchMemory();
 
+  std::string osx_version = sysinfo.mac_version();
 
-
+  std::cout << "osx version: " << osx_version << std::endl;
+  
   std::cout << "Tests completed with "
             << (exit_code == (EXIT_SUCCESS) ? "success" : "failure") << "."
             << std::endl;

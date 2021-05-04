@@ -6,19 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/app/main.cpp
-iostream
--
-thread
--
-vector
--
-SysInfo.h
--
-
-include/SysInfo.h
-utility
--
-string
+/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/srcs/MacSysInfo.mm
+objc/NSObject.h
 -
 

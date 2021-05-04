@@ -17,14 +17,18 @@ unistd.h
 -
 utility
 -
-MacSystemInfo.h
-/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/srcs/MacSystemInfo.h
+MacSysInfo.h
+/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/srcs/MacSysInfo.h
+string
+-
 
-include/MacSystemInfo.h
+include/MacSysInfo.h
 vector
 -
 
 include/SysInfo.h
 utility
+-
+string
 -
 

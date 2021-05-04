@@ -100,6 +100,7 @@ main_EXTERNAL_OBJECTS =
 usr/bin/main-1.0.0: CMakeFiles/main.dir/app/main.cpp.o
 usr/bin/main-1.0.0: CMakeFiles/main.dir/build.make
 usr/bin/main-1.0.0: usr/lib/libsysinfo.1.0.0.dylib
+usr/bin/main-1.0.0: usr/lib/libmacsysinfo.dylib
 usr/bin/main-1.0.0: CMakeFiles/main.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable usr/bin/main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)

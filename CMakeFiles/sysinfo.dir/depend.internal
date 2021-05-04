@@ -3,5 +3,5 @@
 
 CMakeFiles/sysinfo.dir/srcs/SysInfo.cpp.o
  /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/srcs/SysInfo.cpp
- include/MacSystemInfo.h
+ include/MacSysInfo.h
  include/SysInfo.h

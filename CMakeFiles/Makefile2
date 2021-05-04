@@ -74,6 +74,7 @@ CMAKE_BINARY_DIR = /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp
 
 # The main recursive "all" target.
 all: CMakeFiles/main.dir/all
+all: CMakeFiles/macsysinfo.dir/all
 all: CMakeFiles/sysinfo.dir/all
 
 .PHONY : all
@@ -85,6 +86,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/main.dir/clean
+clean: CMakeFiles/macsysinfo.dir/clean
 clean: CMakeFiles/sysinfo.dir/clean
 
 .PHONY : clean
@@ -93,15 +95,16 @@ clean: CMakeFiles/sysinfo.dir/clean
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
+CMakeFiles/main.dir/all: CMakeFiles/macsysinfo.dir/all
 CMakeFiles/main.dir/all: CMakeFiles/sysinfo.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles --progress-num=1,2 "Built target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles --progress-num=3,4 "Built target main"
 .PHONY : CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
@@ -117,13 +120,40 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/macsysinfo.dir
+
+# All Build rule for target.
+CMakeFiles/macsysinfo.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/macsysinfo.dir/build.make CMakeFiles/macsysinfo.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/macsysinfo.dir/build.make CMakeFiles/macsysinfo.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles --progress-num=1,2 "Built target macsysinfo"
+.PHONY : CMakeFiles/macsysinfo.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/macsysinfo.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/macsysinfo.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles 0
+.PHONY : CMakeFiles/macsysinfo.dir/rule
+
+# Convenience name for target.
+macsysinfo: CMakeFiles/macsysinfo.dir/rule
+
+.PHONY : macsysinfo
+
+# clean rule for target.
+CMakeFiles/macsysinfo.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/macsysinfo.dir/build.make CMakeFiles/macsysinfo.dir/clean
+.PHONY : CMakeFiles/macsysinfo.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/sysinfo.dir
 
 # All Build rule for target.
 CMakeFiles/sysinfo.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sysinfo.dir/build.make CMakeFiles/sysinfo.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sysinfo.dir/build.make CMakeFiles/sysinfo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles --progress-num=3,4 "Built target sysinfo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles --progress-num=5,6 "Built target sysinfo"
 .PHONY : CMakeFiles/sysinfo.dir/all
 
 # Build rule for subdir invocation for target.

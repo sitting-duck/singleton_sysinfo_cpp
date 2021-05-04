@@ -2,6 +2,7 @@
 #define SINGLETON_SYSINFO_H
 
 #include <utility>
+#include <string>
 
 // The C++11 singleton-based system info class.
 class SysInfo final {
@@ -40,7 +41,8 @@ class SysInfo final {
   std::pair<double, double> fetchMemory();
 
   void loadSystemFeatures();
-
+    
+  std::string mac_version();
 
 };
 

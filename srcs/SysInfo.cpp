@@ -3,7 +3,12 @@
 #include <iostream>
 #include <unistd.h>
 #include <utility>
-#include "MacSystemInfo.h"
+
+#ifdef __OBJC__
+    #include "MacSysInfo.h"
+#endif
+
+#include <string>
 
 SysInfo &SysInfo::get_instance() {
   // The sysinfo variable is initialized once with a move assignment of a sysinfo
@@ -26,6 +31,14 @@ std::pair<double, double> SysInfo::fetchMemory() {
 }
 
 void SysInfo::loadSystemFeatures() {
-    os = operating_system::mac;
-    osVersion = mac_version();
+    //os = operating_system::mac;
+    //osVersion = mac_version();
 }
+
+std::string SysInfo::mac_version() {
+    //NSString *foo = @"Foo";
+    //std::string bar = std::string([foo UTF8String]);
+   //return osx_version_as_string();
+   return mac_version();
+}
+

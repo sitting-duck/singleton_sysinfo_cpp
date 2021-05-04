@@ -16,6 +16,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles/sysinfo.dir/DependInfo.cmake"
+  "/Users/ashleytharp/projects/learnding/singleton_sysinfo_cpp/CMakeFiles/macsysinfo.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

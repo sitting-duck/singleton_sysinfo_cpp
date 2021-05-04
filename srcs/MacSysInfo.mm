@@ -1,3 +1,4 @@
+#import <objc/NSObject.h>
 
 float mac_version() {
     @autoreleasepool {
@@ -15,4 +16,10 @@ float mac_version() {
         }
         return version;
     }
+}
+
+NSString osx_version_as_string() {
+    NSProcessInfo *pInfo = [NSProcessInfo processInfo];
+    NSString *version = [pInfo operatingSystemVersionString];
+    return version;
 }
